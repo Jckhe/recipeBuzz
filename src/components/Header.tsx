@@ -6,12 +6,20 @@ export default function Header() {
   return (
     <Box
       borderColor="blackAlpha.300"
-      borderWidth="1px"
+      borderBottomWidth={1}
       display="flex"
+      py={3}
+      px={10}
+      gap={3}
       flexDirection="row"
       justifyContent="space-between"
     >
-      <Heading>RecipeBuzz</Heading>
+      <Heading>
+        Recipe
+        <Box as="span" color="teal">
+          Buzz
+        </Box>
+      </Heading>
       <NavMenu />
     </Box>
   );
