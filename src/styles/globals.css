@@ -60,46 +60,12 @@ a {
 }
 
 @font-face {
-  font-family: 'EBGaramond-Initials';
-  src: url('/fonts/ebgaramond/EBGaramond-Initials.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'EBGaramond-InitialsF1';
-  src: url('/fonts/ebgaramond/EBGaramond-InitialsF1.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'EBGaramond-InitialsF2';
-  src: url('/fonts/ebgaramond/EBGaramond-InitialsF2.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'EBGaramond08-Regular';
   src: url('/fonts/ebgaramond/EBGaramond08-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'EBGaramond08-Italic';
-  src: url('/fonts/ebgaramond/EBGaramond08-Italic.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'EBGaramondSC08-Regular';
-  src: url('/fonts/ebgaramond/EBGaramondSC08-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'EBGaramond12-Regular';
@@ -107,25 +73,3 @@ a {
   font-weight: normal;
   font-style: normal;
 }
-
-@font-face {
-  font-family: 'EBGaramond12-Italic';
-  src: url('/fonts/ebgaramond/EBGaramond12-Italic.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'EBGaramond12-AllSC';
-  src: url('/fonts/ebgaramond/EBGaramond12-AllSC.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'EBGaramondSC12-Regular';
-  src: url('/fonts/ebgaramond/EBGaramondSC12-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
