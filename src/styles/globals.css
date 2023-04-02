@@ -22,3 +22,110 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+@font-face {
+    font-family: 'junicode';
+    src: url('/fonts/junicode.webfont/junicode_regular.eot');
+    src: url('/fonts/junicode.webfont/junicode_regular.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/junicode.webfont/junicode_regular.woff') format('woff'),
+         url('/fonts/junicode.webfont/junicode_regular.ttf') format('truetype'),
+         url('/fonts/junicode.webfont/junicode_regular.svg#junicode') format('svg');
+}
+
+@font-face {
+    font-family: 'junicode-italic';
+    src: url('/fonts/junicode.webfont/junicode_italic.eot');
+    src: url('/fonts/junicode.webfont/junicode_italic.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/junicode.webfont/junicode_italic.woff') format('woff'),
+         url('/fonts/junicode.webfont/junicode_italic.ttf') format('truetype'),
+         url('/fonts/junicode.webfont/junicode_italic.svg#junicode-italic') format('svg');
+}
+
+@font-face {
+    font-family: 'junicode-bold-italic';
+    src: url('/fonts/junicode.webfont/junicode_bold-italic.eot');
+    src: url('/fonts/junicode.webfont/junicode_bold-italic.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/junicode.webfont/junicode_bold-italic.woff') format('woff'),
+         url('/fonts/junicode.webfont/junicode_bold-italic.ttf') format('truetype'),
+         url('/fonts/junicode.webfont/junicode_bold-italic.svg#junicode-bold-italic') format('svg');
+}
+
+@font-face {
+    font-family: 'junicode-bold';
+    src: url('/fonts/junicode.webfont/junicode_bold.eot');
+    src: url('/fonts/junicode.webfont/junicode_bold.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/junicode.webfont/junicode_bold.woff') format('woff'),
+         url('/fonts/junicode.webfont/junicode_bold.ttf') format('truetype'),
+         url('/fonts/junicode.webfont/junicode_bold.svg#junicode-bold') format('svg');
+}
+
+@font-face {
+  font-family: 'EBGaramond-Initials';
+  src: url('/fonts/ebgaramond/EBGaramond-Initials.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramond-InitialsF1';
+  src: url('/fonts/ebgaramond/EBGaramond-InitialsF1.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramond-InitialsF2';
+  src: url('/fonts/ebgaramond/EBGaramond-InitialsF2.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramond08-Regular';
+  src: url('/fonts/ebgaramond/EBGaramond08-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramond08-Italic';
+  src: url('/fonts/ebgaramond/EBGaramond08-Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramondSC08-Regular';
+  src: url('/fonts/ebgaramond/EBGaramondSC08-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramond12-Regular';
+  src: url('/fonts/ebgaramond/EBGaramond12-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramond12-Italic';
+  src: url('/fonts/ebgaramond/EBGaramond12-Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramond12-AllSC';
+  src: url('/fonts/ebgaramond/EBGaramond12-AllSC.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EBGaramondSC12-Regular';
+  src: url('/fonts/ebgaramond/EBGaramondSC12-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

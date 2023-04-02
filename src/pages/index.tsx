@@ -1,3 +1,4 @@
+import SearchBar from "@/components/SearchBar";
 import { Box, Stack, Heading, Text, Highlight } from "@chakra-ui/react";
 
 export default function Home() {
@@ -23,8 +24,15 @@ export default function Home() {
         px={7}
         py={12}
       >
-        <Heading size="lg">Unlock the World of Flavor.</Heading>
-        <Text>
+        <Heading
+        fontFamily="EBGaramond08-Regular"
+        size="lg"
+        >
+          Unlock the World of Flavor.
+        </Heading>
+        <Text
+        fontFamily="EBGaramond12-Regular"
+        >
           <Highlight
             query={["RecipeBuzz"]}
             styles={{ px: "1", py: "1", rounded: "full", bg: "teal.100" }}
@@ -36,6 +44,7 @@ export default function Home() {
           Get started now using the search bar below!
         </Text>
       </Stack>
+      <SearchBar />
     </Box>
   );
 }

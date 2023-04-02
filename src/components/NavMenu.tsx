@@ -5,9 +5,8 @@ import { useRouter } from "next/router";
 export default function NavMenu() {
   const router = useRouter();
 
-
   return (
-    <Stack direction="row" marginRight={3}>
+    <Stack direction="row" marginRight={3} fontFamily="junicode">
       <ButtonGroup colorScheme="teal" size="md">
         <Link href="/">
           <Button isActive={router.pathname === "/"}>Home</Button>

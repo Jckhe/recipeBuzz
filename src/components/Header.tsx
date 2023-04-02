@@ -14,7 +14,9 @@ export default function Header() {
       flexDirection="row"
       justifyContent="space-between"
     >
-      <Heading>
+      <Heading
+      fontFamily="junicode"
+      >
         Recipe
         <Box as="span" color="teal">
           Buzz
