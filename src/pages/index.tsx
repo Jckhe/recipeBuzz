@@ -28,7 +28,7 @@ export default function Home() {
         fontFamily="EBGaramond08-Regular"
         size="lg"
         >
-          Unlock the World of Flavor.
+          Unlock a World of Flavor.
         </Heading>
         <Text
         fontFamily="EBGaramond12-Regular"

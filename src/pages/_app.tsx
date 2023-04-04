@@ -6,6 +6,7 @@ import Layout from '@/components/Layout'
 import { Provider } from 'react-redux';
 import store from '../store/index'
 
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
@@ -17,3 +18,4 @@ export default function App({ Component, pageProps }: AppProps) {
     </Provider>
   )
 }
+
