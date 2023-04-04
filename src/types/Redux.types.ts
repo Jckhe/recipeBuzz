@@ -12,7 +12,7 @@ export interface RecipeCard {
 }
 
 export interface InitialState {
-  RecipeCards: RecipeCard[];
+  SearchedCards: RecipeCard[];
   loading: boolean;
   error?: string | null;
 }

@@ -5,7 +5,7 @@ import { searchMeals } from '@/pages/api/Search';
 import { RootState } from '../index';
 
 const initialState: InitialState = {
-  RecipeCards: [],
+  SearchedCards: [],
   loading: false,
   error: null
 };
@@ -25,12 +25,13 @@ export const mainSlice = createSlice({
         state.loading = false;
         state.error = null;
         console.log("Checking payload: ", action)
-        state.RecipeCards = action.payload;
+        state.SearchedCards = action.payload;
         console.log("Checking state: ", state)
       })
       .addCase(fetchMeals.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+        console.log("Error: ", action.error.message)
       });
   },
 });
@@ -62,7 +63,7 @@ export const fetchMeals = createAsyncThunk(
 
 export const { } = mainSlice.actions;
 
-export const selectRecipeCards = (state: RootState) => state.mainSlice.RecipeCards;
+export const selectSearchedCards = (state: RootState) => state.mainSlice.SearchedCards;
 export const selectLoading = (state: RootState) => state.mainSlice.loading;
 export const selectError = (state: RootState) => state.mainSlice.error;
 

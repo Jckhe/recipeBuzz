@@ -1,4 +1,5 @@
 import SearchBar from "@/components/SearchBar";
+import IndexContainer from "@/containers/IndexContainer";
 import { Box, Stack, Heading, Text, Highlight } from "@chakra-ui/react";
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
       backgroundColor="#F0F0F0"
       display="flex"
       width="100%"
-      height="100vh"
+      height="120vh"
       alignItems="center"
       flexDirection="column"
     >
@@ -45,6 +46,7 @@ export default function Home() {
         </Text>
       </Stack>
       <SearchBar />
+      <IndexContainer />
     </Box>
   );
 }

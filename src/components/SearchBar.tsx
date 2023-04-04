@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMeals, selectRecipeCards } from "@/store/slices/mainSlice";
+import { fetchMeals } from "@/store/slices/mainSlice";
 import { RootState, AppDispatch } from "@/store";
 import { ThunkDispatch, Action } from "@reduxjs/toolkit";
 
