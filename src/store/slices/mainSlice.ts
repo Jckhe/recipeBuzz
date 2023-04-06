@@ -6,6 +6,7 @@ import { RootState } from '../index';
 
 const initialState: InitialState = {
   SearchedCards: [],
+  SavedCards: [],
   loading: false,
   error: null
 };
@@ -14,6 +15,12 @@ export const mainSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
+    saveRecipe: (state, action: {payload: RecipeCard}) => {
+      state.SavedCards.push({...action.payload})
+    },
+    deleteRecipe: (state, action) => {
+      state.SavedCards = state.SavedCards.filter((card) => card.idMeal !== action.payload)
+    }
   },
   extraReducers: (builder) => {
     builder
