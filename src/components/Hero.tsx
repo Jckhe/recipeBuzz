@@ -48,7 +48,7 @@ export default function Hero() {
             </Highlight>
             <br/>
           </Text>
-          <Link href="/search">
+          <Link href="#search">
             <Button rightIcon={<ArrowForwardIcon />} variant="outline" colorScheme="whatsapp">Start searching now!</Button>
           </Link>
       </Stack>
