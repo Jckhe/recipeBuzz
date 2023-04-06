@@ -27,7 +27,7 @@ const SearchBar = () => {
   };
 
   return (
-    <InputGroup width="40%">
+    <InputGroup m={10} width="40%">
       <Input
         variant="filled"
         color="blackAlpha.500"

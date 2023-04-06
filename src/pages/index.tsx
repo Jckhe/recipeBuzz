@@ -1,52 +1,22 @@
 import SearchBar from "@/components/SearchBar";
 import IndexContainer from "@/containers/IndexContainer";
-import { Box, Stack, Heading, Text, Highlight } from "@chakra-ui/react";
+import { Box, Stack, Heading, Text, Highlight, Link, Button } from "@chakra-ui/react";
+import Hero from "@/components/Hero";
+import Search from "@/components/Search";
 
 export default function Home() {
   return (
     <Box
-      borderColor="red.300"
-      borderWidth={1}
-      backgroundColor="#F0F0F0"
+      border="1px solid green"
+      backgroundColor="#d4d2d2"
       display="flex"
       width="100%"
-      height="120vh"
+      height="200vh"
       alignItems="center"
       flexDirection="column"
     >
-      <Stack
-        direction="column"
-        width="40%"
-        marginTop={5}
-        borderColor="blackAlpha.200"
-        borderWidth={1}
-        backgroundColor="white"
-        textAlign="center"
-        px={7}
-        py={12}
-      >
-        <Heading
-        fontFamily="EBGaramond08-Regular"
-        size="lg"
-        >
-          Unlock a World of Flavor.
-        </Heading>
-        <Text
-        fontFamily="EBGaramond12-Regular"
-        >
-          <Highlight
-            query={["RecipeBuzz"]}
-            styles={{ px: "1", py: "1", rounded: "full", bg: "teal.100" }}
-          >
-            Discover a world of delicious and easy-to-make meals with
-            RecipeBuzz. Search and save your favorite recipes with ease and speed.
-          </Highlight>
-          <br/>
-          Get started now using the search bar below!
-        </Text>
-      </Stack>
-      <SearchBar />
-      <IndexContainer />
+      <Hero />
+      <Search />
     </Box>
   );
 }
