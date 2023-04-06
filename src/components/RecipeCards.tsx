@@ -4,6 +4,7 @@ import { useState } from "react";
 import { StarIcon } from "@chakra-ui/icons";
 import { saveRecipe, deleteRecipe, selectSavedCards } from "@/store/slices/mainSlice";
 import { useDispatch, useSelector } from "react-redux";
+import RecipeModal from "./RecipeModal";
 
 interface RecipeCardProps {
   recipe: RecipeCardType;
@@ -12,6 +13,7 @@ interface RecipeCardProps {
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
   const dispatch = useDispatch();
   const savedCards = useSelector(selectSavedCards);
+  const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const isSaved = savedCards.some((savedCard) => savedCard.idMeal === recipe.idMeal);
 
@@ -23,6 +25,10 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
     }
   };
 
+  const handleClick = () => {
+    setShowModal(true);
+  };
+
   return (
     <Box
       border={
@@ -30,6 +36,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           ? "1px solid rgba(105, 104, 101, 0.7)"
           : "1px solid rgba(105, 104, 101, 1)"
       }
+      onClick={handleClick}
       height="md"
       padding={10}
       borderRadius="lg"
@@ -107,6 +114,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           {recipe.strInstructions.slice(0, 100)}...
         </Text>
       </Box>
+      <RecipeModal isOpen={showModal} onClose={() => setShowModal(false)} recipe={recipe} />
     </Box>
   );
 };
