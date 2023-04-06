@@ -1,18 +1,26 @@
-import { Box, Image, Heading, Text, Flex, IconButton } from "@chakra-ui/react";
-import { RecipeCard } from "@/types/Redux.types";
+import { Box, Image, Heading, Text, Flex, IconButton, Divider } from "@chakra-ui/react";
+import { RecipeCardType } from "@/types/Redux.types";
 import { useState } from "react";
 import { StarIcon } from "@chakra-ui/icons";
+import { saveRecipe, deleteRecipe, selectSavedCards } from "@/store/slices/mainSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 interface RecipeCardProps {
-  recipe: RecipeCard;
+  recipe: RecipeCardType;
 }
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
+  const dispatch = useDispatch();
+  const savedCards = useSelector(selectSavedCards);
   const [isHovered, setIsHovered] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const isSaved = savedCards.some((savedCard) => savedCard.idMeal === recipe.idMeal);
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
+  const handleSaveClick = () => {
+    if (isSaved) {
+      dispatch(deleteRecipe(recipe.idMeal));
+    } else {
+      dispatch(saveRecipe(recipe));
+    }
   };
 
   return (
@@ -22,6 +30,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           ? "1px solid rgba(105, 104, 101, 0.7)"
           : "1px solid rgba(105, 104, 101, 1)"
       }
+      height="md"
       padding={10}
       borderRadius="lg"
       overflow="hidden"
@@ -50,9 +59,9 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           size="lg"
           colorScheme="teal"
           backgroundColor={"transparent"}
-          aria-label="favorite"
-          icon={<StarIcon color={isFavorite ? "teal" : "gray.400"} />}
-          onClick={handleFavoriteClick}
+          aria-label={isSaved ? "Remove from saved" : "Save recipe"}
+          icon={<StarIcon color={isSaved ? "teal" : "gray.400"} />}
+          onClick={handleSaveClick}
         />
       </Box>
       <Image

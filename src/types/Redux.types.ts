@@ -1,4 +1,4 @@
-export interface RecipeCard {
+export interface RecipeCardType {
   idMeal: string;
   strMeal: string;
   strCategory: string;
@@ -9,11 +9,12 @@ export interface RecipeCard {
   strYoutube: string;
   strIngredient: { [key: number]: string };
   strMeasure: { [key: number]: string };
+  isSaved: boolean
 }
 
 export interface InitialState {
-  SearchedCards: RecipeCard[];
-  SavedCards: RecipeCard[];
+  SearchedCards: RecipeCardType[];
+  SavedCards: RecipeCardType[];
   loading: boolean;
   error?: string | null;
 }

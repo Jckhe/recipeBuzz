@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RecipeCard, InitialState } from '@/types/Redux.types';
+import { RecipeCardType, InitialState } from '@/types/Redux.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { searchMeals } from '@/pages/api/Search';
 import { RootState } from '../index';
@@ -15,8 +15,8 @@ export const mainSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
-    saveRecipe: (state, action: {payload: RecipeCard}) => {
-      state.SavedCards.push({...action.payload})
+    saveRecipe: (state, action: {payload: RecipeCardType}) => {
+      state.SavedCards.push({...action.payload, isSaved: true})
     },
     deleteRecipe: (state, action) => {
       state.SavedCards = state.SavedCards.filter((card) => card.idMeal !== action.payload)
@@ -64,12 +64,14 @@ export const fetchMeals = createAsyncThunk(
       strMeasure: Object.keys(meal)
         .filter((key) => key.startsWith("strMeasure") && meal[key])
         .map((key) => meal[key] as string),
+      isSaved: false
     }));
   }
 )
 
-export const { } = mainSlice.actions;
+export const { saveRecipe, deleteRecipe } = mainSlice.actions;
 
+export const selectSavedCards = (state: RootState) => state.mainSlice.SavedCards;
 export const selectSearchedCards = (state: RootState) => state.mainSlice.SearchedCards;
 export const selectLoading = (state: RootState) => state.mainSlice.loading;
 export const selectError = (state: RootState) => state.mainSlice.error;
