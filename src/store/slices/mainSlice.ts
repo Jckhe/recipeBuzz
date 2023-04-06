@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RecipeCard, InitialState } from '@/types/Redux.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { searchMeals } from '@/pages/api/search';
+import { searchMeals } from "../../pages/api/search"
 import { RootState } from '../index';
 
 const initialState: InitialState = {
