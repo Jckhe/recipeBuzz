@@ -1,6 +1,6 @@
 import { Wrap, WrapItem, Heading, Box, Spinner, Text } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { selectSearchedCards, selectLoading, selectError } from "@/store/slices/mainSlice";
+import { selectLoading, selectError } from "@/store/slices/mainSlice";
 import RecipeCard from "../components/RecipeCards";
 import { useEffect, useState, useMemo} from "react";
 import { RecipeCardType } from "@/types/Redux.types";
