@@ -9,9 +9,10 @@ import { Box, Heading } from "@chakra-ui/react";
 export default function Search() {
   return (
     <Box
+    mt={20}
     id="search"
     width="100%"
-    height="100vh"
+    height="120vh"
     display="flex"
     flexDirection="column"
     justifyContent="center"

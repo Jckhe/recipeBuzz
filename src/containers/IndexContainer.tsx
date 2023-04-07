@@ -42,11 +42,12 @@ const IndexContainer = () => {
 
   return (
     <Box
-      height="calc(100% - 200px)"
+      minHeight="100vh"
       overflowX="hidden"
       width="80%"
+      backgroundColor="#787777"
       border="1px solid #66635c"
-      borderRadius={10}
+      borderRadius={3}
       display="flex"
       flexDirection="column"
       justifyContent="center"

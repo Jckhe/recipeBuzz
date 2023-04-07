@@ -17,7 +17,8 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const isSaved = savedCards.some((savedCard) => savedCard.idMeal === recipe.idMeal);
 
-  const handleSaveClick = () => {
+  const handleSaveClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
     if (isSaved) {
       dispatch(deleteRecipe(recipe.idMeal));
     } else {
@@ -42,6 +43,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
       borderRadius="lg"
       overflow="hidden"
       width="xs"
+      backgroundColor="white"
       transform={isHovered ? "scale(1.02)" : "scale(1.00)"}
       cursor="pointer"
       display="flex"
@@ -68,7 +70,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           backgroundColor={"transparent"}
           aria-label={isSaved ? "Remove from saved" : "Save recipe"}
           icon={<StarIcon color={isSaved ? "teal" : "gray.400"} />}
-          onClick={handleSaveClick}
+          onClick={(event) => handleSaveClick(event)}
         />
       </Box>
       <Image

@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Layout from '@/components/Layout'
 import { Provider } from 'react-redux';
 import store from '../store/index'
+import ScrollTopButton from '@/components/ScrollToTop'
 
 
 export default function App({ Component, pageProps }: AppProps) {

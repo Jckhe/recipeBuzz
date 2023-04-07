@@ -9,16 +9,16 @@ import {
   Image,
   Text,
   Box,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
-  List,
-  ListIcon,
+  Button,
   ListItem,
   UnorderedList,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  TabPanels,
 } from "@chakra-ui/react";
+import { FaYoutube } from 'react-icons/fa';
 
 interface RecipeModalProps {
   recipe: RecipeCardType;
@@ -38,83 +38,124 @@ function formatInstructions(instructions: string) {
   //converts the ingredients object to an array
   const ingredients = Object.entries(recipe.strIngredient).map(([key, value]) => ({key, value}));
   const measurements = Object.entries(recipe.strMeasure).map(([key, value]) => ({key, value}));
-  console.log("measurements: ", recipe.strMeasure)
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent maxW="80%">
+      <ModalContent maxH="120%" minH="100%" maxW="80%" p={5}>
         <ModalHeader
         textAlign="center"
         fontFamily="junicode"
+        fontSize={35}
+        display="flex"
+        flexDirection="column"
         >
           {recipe.strMeal}
         </ModalHeader>
         <ModalCloseButton />
-        <ModalBody justifyContent="space-between" display="flex" alignItems="center" gap={3} flexDirection="column">
+        <ModalBody justifyContent="flex-start" display="flex" alignItems="center" gap={3} flexDirection="column">
           <Box
           height="10%"
           width="20%"
           >
-            <Image height="100%" width="100%" src={recipe.strMealThumb} alt={recipe.strMeal} />
+            <Image border="1px solid gray" height="100%" width="100%" src={recipe.strMealThumb} alt={recipe.strMeal} />
           </Box>
+          <Button width="10%" colorScheme='red' leftIcon={<FaYoutube />}>
+            <Text fontFamily="junicode">Youtube</Text>
+          </Button>
           <Box
           display="flex"
           flexDirection="column"
-          width="40%"
+          width="80%"
           border="1px solid black"
           >
-            <Accordion allowMultiple>
-              {/* Ingredients */}
-              <AccordionItem>
-                <AccordionButton>
-                <Box as="span" flex='1' textAlign='left'>
-                  Ingredients
-                </Box>
-                <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4}>
-                <UnorderedList>
-                    {ingredients.map(({key, value}) => (
-                      <ListItem key={key}>{value}</ListItem>
-                    ))}
-                  </UnorderedList>
-                </AccordionPanel>
-              </AccordionItem>
-              {/* Measurements */}
-              <AccordionItem>
-                <AccordionButton>
-                <Box as="span" flex='1' textAlign='left'>
-                  Measurements
-                </Box>
-                <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4}>
-                <UnorderedList>
-                    {measurements.map(({key, value}) => (
-                      <ListItem key={key}>{value}</ListItem>
-                    ))}
-                  </UnorderedList>
-                </AccordionPanel>
-              </AccordionItem>
-              {/* Instructions */}
-              <AccordionItem>
-                <AccordionButton>
-                <Box as="span" flex='1' textAlign='left'>
-                  Instructions
-                </Box>
-                <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4}>
-                  {formatInstructions(recipe.strInstructions)}
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
+            <Tabs>
+              <TabList
+              justifyContent="center"
+              >
+                <Tab>Instructions</Tab>
+                <Tab>Ingredients</Tab>
+                <Tab>Measurements</Tab>
+              </TabList>
+              <TabPanels
+              height="45vh"
+              >
+              <TabPanel>
+                  <Box height="100%" maxHeight="40vh" overflowY="scroll">
+                    {formatInstructions(recipe.strInstructions)}
+                  </Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box height="100%" maxHeight="40vh" overflowY="scroll">
+                    <UnorderedList>
+                      {ingredients.map(({key, value}) => (
+                      <ListItem key={key}>{value}</ListItem>))}
+                    </UnorderedList>
+                  </Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box height="100%" maxHeight="40vh" overflowY="scroll">
+                    <UnorderedList>
+                      {measurements.map(({key, value}) => (
+                      <ListItem key={key}>{value}</ListItem>))}
+                    </UnorderedList>
+                  </Box>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </Box>
         </ModalBody>
       </ModalContent>
     </Modal>
   );
 };
+
+// Accordian approach
+// <Accordion allowMultiple>
+// {/* Ingredients */}
+// <AccordionItem>
+//   <AccordionButton>
+//   <Box as="span" flex='1' textAlign='left'>
+//     Ingredients
+//   </Box>
+//   <AccordionIcon />
+//   </AccordionButton>
+//   <AccordionPanel pb={4}>
+//   <UnorderedList>
+//       {ingredients.map(({key, value}) => (
+//         <ListItem key={key}>{value}</ListItem>
+//       ))}
+//     </UnorderedList>
+//   </AccordionPanel>
+// </AccordionItem>
+// {/* Measurements */}
+// <AccordionItem>
+//   <AccordionButton>
+//   <Box as="span" flex='1' textAlign='left'>
+//     Measurements
+//   </Box>
+//   <AccordionIcon />
+//   </AccordionButton>
+//   <AccordionPanel pb={4}>
+//   <UnorderedList>
+//       {measurements.map(({key, value}) => (
+//         <ListItem key={key}>{value}</ListItem>
+//       ))}
+//     </UnorderedList>
+//   </AccordionPanel>
+// </AccordionItem>
+// {/* Instructions */}
+// <AccordionItem>
+//   <AccordionButton>
+//   <Box as="span" flex='1' textAlign='left'>
+//     Instructions
+//   </Box>
+//   <AccordionIcon />
+//   </AccordionButton>
+//   <AccordionPanel pb={4}>
+//     {formatInstructions(recipe.strInstructions)}
+//   </AccordionPanel>
+// </AccordionItem>
+// </Accordion>
 
 export default RecipeModal;

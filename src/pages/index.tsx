@@ -3,6 +3,7 @@ import IndexContainer from "@/containers/IndexContainer";
 import { Box, Stack, Heading, Text, Highlight, Link, Button } from "@chakra-ui/react";
 import Hero from "@/components/Hero";
 import Search from "@/components/Search";
+import ScrollTopButton from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -11,12 +12,14 @@ export default function Home() {
       backgroundColor="#d4d2d2"
       display="flex"
       width="100%"
-      height="200vh"
+      height="230vh"
       alignItems="center"
       flexDirection="column"
+      pb={15}
     >
       <Hero />
       <Search />
+      <ScrollTopButton />
     </Box>
   );
 }
