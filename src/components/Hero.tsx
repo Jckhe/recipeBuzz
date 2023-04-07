@@ -1,9 +1,12 @@
-import { ArrowForwardIcon } from "@chakra-ui/icons";
-import { Stack, Heading, Highlight, Button, Box, Text } from "@chakra-ui/react";
-import Link from "next/link";
+  import { ArrowForwardIcon } from "@chakra-ui/icons";
+  import { Stack, Heading, Highlight, Button, Box, Text } from "@chakra-ui/react";
+  import Link from "next/link";
+  import React from "react";
 
 
-export default function Hero() {
+//Hero component that is rendered in the main page.
+
+const Hero = React.memo(function Hero() {
   return (
     <Box
     height="100vh"
@@ -54,4 +57,6 @@ export default function Hero() {
       </Stack>
     </Box>
   )
-}
+});
+
+export default Hero;

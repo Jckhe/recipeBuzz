@@ -20,3 +20,15 @@ RecipeBuzz is a web application that allows you to search and discover new recip
 - TypeScript
 - Chakra UI
 - Redux Toolkit
+- TanStack UseQuery
+
+# Implementation of Dynamic Search
+
+Dynamic search is implemented into the Search component which consists of the SearchBar and IndexContainer component.
+The way it works is that the we use the UseQuery hook from the TanStack library to cache the recipe objects client-sided, by doing so we can both fetch and cache the recipe objects in memory. This means if the user decides to search for the same recipes again, we save time and energy usuage by not needing to fetch again (this also optimizes user experience by saving the time it needs to fetch).
+
+In combination with the useQuery hook, we have a debounce wrapper function around the refetch() function from the useQuery hook in order to throttle and delay the time it takes the user to input a character in order to avoid being rate limited by the API.
+
+# Lazy Loading
+
+Added lazy loading and memoization of certain components to prevent unnecessary rerenders and only loading images/components when they are in the viewport.

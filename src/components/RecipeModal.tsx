@@ -1,3 +1,4 @@
+import { RecipeModalProps } from "@/types/Component.types";
 import { RecipeCardType } from "@/types/Redux.types";
 import {
   Modal,
@@ -20,11 +21,9 @@ import {
 } from "@chakra-ui/react";
 import { FaYoutube } from 'react-icons/fa';
 
-interface RecipeModalProps {
-  recipe: RecipeCardType;
-  isOpen: boolean;
-  onClose: () => void;
-}
+
+//The recipe modal is the pop up that will display more information and expanded view of the recipe card.
+// this component rests within the Recipe Card component and is lazy loaded UNTIL the modal's state is true.
 
 const RecipeModal:React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) => {
 

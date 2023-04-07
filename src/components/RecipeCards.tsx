@@ -1,5 +1,5 @@
 import { Box, Image, Heading, Text, Flex, IconButton } from "@chakra-ui/react";
-import { RecipeCardType } from "@/types/Redux.types";
+import React from "react";
 import { useState } from "react";
 import { StarIcon } from "@chakra-ui/icons";
 import { saveRecipe, deleteRecipe, selectSavedCards } from "@/store/slices/mainSlice";
@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import RecipeModal from "./RecipeModal";
 import { RootState, AppDispatch } from "@/store";
 import { ThunkDispatch, Action } from "@reduxjs/toolkit";
+import { RecipeCardProps } from "@/types/Component.types";
 
-interface RecipeCardProps {
-  recipe: RecipeCardType;
-}
 
-const RecipeCard = ({ recipe }: RecipeCardProps) => {
+
+//RecipeCard Component
+//Each recipe object returned from the API will render a RecipeCard component with their details 
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   const dispatch: ThunkDispatch<RootState, undefined, Action> =
     useDispatch<AppDispatch>();
   const savedCards = useSelector(selectSavedCards);
@@ -79,6 +80,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
       <Image
         src={recipe.strMealThumb}
         alt={recipe.strMeal}
+        loading="lazy"
         border="1px solid gray"
         borderRadius={2}
         objectFit="cover"
@@ -119,9 +121,10 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           {recipe.strInstructions.slice(0, 100)}...
         </Text>
       </Box>
+      {/* Lazy loading the modal will make this more efficient */}
       <RecipeModal isOpen={showModal} onClose={() => setShowModal(false)} recipe={recipe} />
     </Box>
   );
 };
 
-export default RecipeCard;
+export default React.memo(RecipeCard);

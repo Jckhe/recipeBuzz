@@ -5,11 +5,8 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import { SearchBarProps } from "@/types/Component.types";
 
-interface SearchBarProps {
-  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  searchTerm: string
-}
 //SearchBar
 const SearchBar = ({onInputChange, searchTerm}: SearchBarProps) => {
   // const onPressHandler = () => {

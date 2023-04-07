@@ -3,11 +3,9 @@ import { useSelector } from "react-redux";
 import { selectLoading, selectError } from "@/store/slices/mainSlice";
 import RecipeCard from "../components/RecipeCards";
 import { useEffect, useState, useMemo} from "react";
-import { RecipeCardType } from "@/types/Redux.types";
+import { IndexContainerProps } from "@/types/Component.types";
 
-interface IndexContainerProps {
-  recipeCards: RecipeCardType[];
-}
+
 
 const IndexContainer = ({recipeCards}: IndexContainerProps) => {
   const isLoading = useSelector(selectLoading);

@@ -11,6 +11,8 @@ import { RecipeCardType } from "@/types/Redux.types";
 
 
 
+// This is the component where the searching and display of searched recipe cards will display
+// This component is rendered on the index.tsx component in the index page.
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -21,6 +23,7 @@ export default function Search() {
     { enabled: false}
   )
 
+  //helps throttle the query so we dont get rate limited.
   const debouncedRefetch = debounce(refetch, 1500);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

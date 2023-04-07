@@ -1,14 +1,9 @@
 import RecipeCard from "@/components/RecipeCards";
 import { Wrap, WrapItem } from "@chakra-ui/react";
 import { RecipeCardType } from "@/types/Redux.types";
+import { BookmarkContainerProps } from "@/types/Component.types";
 
-
-interface BookmarkContainer {
-  savedCards: RecipeCardType[]
-}
-
-
-export default function BookmarkContainer({savedCards}: BookmarkContainer) {
+export default function BookmarkContainer({savedCards}: BookmarkContainerProps) {
   return (
     <Wrap
     css={{
