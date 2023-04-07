@@ -3,9 +3,13 @@ import { useSelector } from "react-redux";
 import { selectSearchedCards, selectLoading, selectError } from "@/store/slices/mainSlice";
 import RecipeCard from "../components/RecipeCards";
 import { useEffect, useState, useMemo} from "react";
+import { RecipeCardType } from "@/types/Redux.types";
 
-const IndexContainer = () => {
-  const recipeCards = useSelector(selectSearchedCards);
+interface IndexContainerProps {
+  recipeCards: RecipeCardType[];
+}
+
+const IndexContainer = ({recipeCards}: IndexContainerProps) => {
   const isLoading = useSelector(selectLoading);
   const isError = useSelector(selectError);
   const images = useMemo(
@@ -37,7 +41,7 @@ const IndexContainer = () => {
       <Box
         background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
         backgroundSize="cover"
-        height="calc(100% - 200px)"
+        minHeight={{"base": '60vh', 'sm': '85vh', 'md': '95vh'}}
         display="flex"
         justifyContent="center"
         width="80%"
@@ -55,10 +59,10 @@ const IndexContainer = () => {
       <Box
       background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
       backgroundSize="cover"
-      height="calc(100% - 200px)"
+      minHeight={{"base": '60vh', 'sm': '85vh', 'md': '95vh'}}
       display="flex"
       justifyContent="center"
-      width="80%"
+      width={{"base": '95%', "sm": "80%"}}
       alignItems="center"
       border="1px solid #66635c"
       borderRadius={10}
@@ -70,11 +74,11 @@ const IndexContainer = () => {
 
   return (
     <Box
-    background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
-    backgroundSize="cover"
-      minHeight="100vh"
+      background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
+      backgroundSize="cover"
+      minHeight={{"base": '60vh', 'sm': '85vh', 'md': '95vh'}}
       overflowX="hidden"
-      width="80%"
+      width={{"base": '95%', "sm": "80%"}}
       backgroundColor="#787777"
       border="1px solid #66635c"
       borderRadius={3}

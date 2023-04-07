@@ -10,8 +10,9 @@ export default function Header() {
       py={3}
       px={10}
       gap={3}
-      flexDirection="row"
-      justifyContent="space-between"
+      flexDirection={{'base': 'column', 'sm': 'row'}}
+      justifyContent={{'base': 'center', 'sm': "space-between"}}
+      alignItems={{'base': 'center'}}
     >
       <Heading
       fontFamily="junicode"

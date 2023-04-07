@@ -14,6 +14,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@reduxjs/toolkit": "^1.9.3",
+    "@tanstack/react-query": "^4.28.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
@@ -21,14 +22,16 @@
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
     "framer-motion": "^10.10.0",
+    "lodash.debounce": "^4.0.8",
     "next": "13.2.4",
     "next-redux-wrapper": "^8.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
-    "react-query": "^3.39.3",
     "react-redux": "^8.0.5",
-    "react-use": "^17.4.0",
     "typescript": "5.0.3"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.7"
   }
 }

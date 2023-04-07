@@ -12,13 +12,13 @@ export default function Hero() {
     alignItems="center"
     justifyContent="center"
     borderBottom="1px solid black"
-    background={`url('https://images.unsplash.com/photo-1514986888952-8cd320577b68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80') no-repeat center center fixed`}
+    background={`url('https://images.unsplash.com/photo-1514986888952-8cd320577b68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80')  center center fixed`}
     backgroundSize="cover"
     >
         <Stack
           direction="column"
-          width="40%"
-          height="50%"
+          width={{ 'base': '80%','md': '50%' }}
+          height={{ 'base': '35%', 'md': '50%'}}
           marginTop={5}
           borderColor="blackAlpha.200"
           borderWidth={1}
