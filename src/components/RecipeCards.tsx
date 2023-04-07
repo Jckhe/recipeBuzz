@@ -5,16 +5,19 @@ import { StarIcon } from "@chakra-ui/icons";
 import { saveRecipe, deleteRecipe, selectSavedCards } from "@/store/slices/mainSlice";
 import { useDispatch, useSelector } from "react-redux";
 import RecipeModal from "./RecipeModal";
+import { RootState, AppDispatch } from "@/store";
+import { ThunkDispatch, Action } from "@reduxjs/toolkit";
 
 interface RecipeCardProps {
   recipe: RecipeCardType;
 }
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch<RootState, undefined, Action> =
+    useDispatch<AppDispatch>();
   const savedCards = useSelector(selectSavedCards);
-  const [showModal, setShowModal] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const isSaved = savedCards.some((savedCard) => savedCard.idMeal === recipe.idMeal);
 
   const handleSaveClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

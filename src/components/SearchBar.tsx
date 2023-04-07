@@ -6,16 +6,24 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchMeals } from "@/store/slices/mainSlice";
 import { RootState, AppDispatch } from "@/store";
 import { ThunkDispatch, Action } from "@reduxjs/toolkit";
+import { useQuery } from "react-query";
+import { searchMeals } from "@/pages/api/Search";
 
 //SearchBar
 const SearchBar = () => {
   const dispatch: ThunkDispatch<RootState, undefined, Action> =
     useDispatch<AppDispatch>();
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { data: recipeCards, refetch } = useQuery(
+    ["searchMeals", searchTerm],
+    () => searchMeals({query: searchTerm}),
+    { enabled: false}
+  )
 
   const onPressHandler = () => {
     dispatch(fetchMeals(searchTerm));
