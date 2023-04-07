@@ -1,40 +1,20 @@
-RecipeBuzz
+# RecipeBuzz
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+RecipeBuzz is a web application that allows you to search and discover new recipes to try. With a simple and easy-to-use interface, RecipeBuzz helps you find your next favorite meal, bookmark it, and easily access your favorite recipes anytime.
 
-## Getting Started
+## Features
 
-First, run the development server:
+- Search for recipes using the search bar on the main page
+- View recipe cards containing meal names, categories, preview images, and brief instructions
+- Click on a recipe card to open a modal with more details, including ingredients, measurements, and detailed instructions
+- Watch the associated YouTube video for each recipe
+- Star and favorite recipes to bookmark them for future reference
+- Access your bookmarked recipes in the Recipes tab, with data persistence even after leaving the site
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Next.js
+- React
+- TypeScript
+- Chakra UI
+- Redux Toolkit
