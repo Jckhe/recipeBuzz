@@ -11,16 +11,29 @@ const initialState: InitialState = {
   error: null
 };
 
+if (typeof window !== 'undefined') {
+  const savedSearches = JSON.parse(localStorage.getItem('savedSearches') || '[]');
+  initialState.SavedCards = savedSearches;
+}
+
 export const mainSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
     saveRecipe: (state, action: {payload: RecipeCardType}) => {
       state.SavedCards.push({...action.payload, isSaved: true})
+      localStorage.setItem('savedSearches', JSON.stringify(state.SavedCards)); // Save the updated saved searches array to local storage
     },
     deleteRecipe: (state, action) => {
       state.SavedCards = state.SavedCards.filter((card) => card.idMeal !== action.payload)
-    }
+      localStorage.setItem('savedSearches', JSON.stringify(state.SavedCards)); // Save the updated saved searches array to local storage
+    },
+    syncSavedCards: (state) => {
+      if (typeof window !== 'undefined') {
+        const savedSearches = JSON.parse(localStorage.getItem('savedSearches') || '[]');
+        state.SavedCards = savedSearches;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -69,7 +82,7 @@ export const fetchMeals = createAsyncThunk(
   }
 )
 
-export const { saveRecipe, deleteRecipe } = mainSlice.actions;
+export const { saveRecipe, deleteRecipe, syncSavedCards } = mainSlice.actions;
 
 export const selectSavedCards = (state: RootState) => state.mainSlice.SavedCards;
 export const selectSearchedCards = (state: RootState) => state.mainSlice.SearchedCards;

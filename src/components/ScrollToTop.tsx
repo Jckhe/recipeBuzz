@@ -13,7 +13,7 @@ export default function ScrollTopButton() {
   //this function will be checking for the user's scroll behavior
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 5){
+    if (scrolled > 30){
       setVisible(true)
       console.log("visible")
     } 

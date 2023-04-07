@@ -5,10 +5,11 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Layout from '@/components/Layout'
 import { Provider } from 'react-redux';
 import store from '../store/index'
+import { wrapper } from '@/store';
 import ScrollTopButton from '@/components/ScrollToTop'
 
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <ChakraProvider theme={theme}>
@@ -20,3 +21,4 @@ export default function App({ Component, pageProps }: AppProps) {
   )
 }
 
+export default wrapper.withRedux(App);
