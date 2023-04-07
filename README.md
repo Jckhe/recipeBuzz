@@ -2,6 +2,8 @@
 
 RecipeBuzz is a web application that allows you to search and discover new recipes to try. With a simple and easy-to-use interface, RecipeBuzz helps you find your next favorite meal, bookmark it, and easily access your favorite recipes anytime.
 
+[Deployed URL](https://recipe-buzz.vercel.app/)
+
 ## Features
 
 - Search for recipes using the search bar on the main page
