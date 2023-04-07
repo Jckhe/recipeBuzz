@@ -35,6 +35,11 @@ function formatInstructions(instructions: string) {
   ));
 }
 
+function openURL() {
+  const url = recipe.strYoutube;
+  window.open(url, '_blank');
+}
+
   //converts the ingredients object to an array
   const ingredients = Object.entries(recipe.strIngredient).map(([key, value]) => ({key, value}));
   const measurements = Object.entries(recipe.strMeasure).map(([key, value]) => ({key, value}));
@@ -60,7 +65,7 @@ function formatInstructions(instructions: string) {
           >
             <Image border="1px solid gray" height="100%" width="100%" src={recipe.strMealThumb} alt={recipe.strMeal} />
           </Box>
-          <Button width="10%" colorScheme='red' leftIcon={<FaYoutube />}>
+          <Button onClick={openURL} width="10%" colorScheme='red' leftIcon={<FaYoutube />}>
             <Text fontFamily="junicode">Youtube</Text>
           </Button>
           <Box

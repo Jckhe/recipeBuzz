@@ -1,4 +1,4 @@
-import { Box, Image, Heading, Text, Flex, IconButton, Divider } from "@chakra-ui/react";
+import { Box, Image, Heading, Text, Flex, IconButton } from "@chakra-ui/react";
 import { RecipeCardType } from "@/types/Redux.types";
 import { useState } from "react";
 import { StarIcon } from "@chakra-ui/icons";

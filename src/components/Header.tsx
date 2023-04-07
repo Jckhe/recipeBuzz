@@ -1,4 +1,3 @@
-import styles from "../styles/Header.module.css";
 import NavMenu from "./NavMenu";
 import { Heading, Box } from "@chakra-ui/react";
 

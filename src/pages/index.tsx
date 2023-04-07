@@ -1,6 +1,4 @@
-import SearchBar from "@/components/SearchBar";
-import IndexContainer from "@/containers/IndexContainer";
-import { Box, Stack, Heading, Text, Highlight, Link, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Hero from "@/components/Hero";
 import Search from "@/components/Search";
 import ScrollTopButton from "@/components/ScrollToTop";

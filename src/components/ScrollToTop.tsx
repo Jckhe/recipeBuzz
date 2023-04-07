@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowUpIcon } from '@chakra-ui/icons';
-import { Box, Button } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 export default function ScrollTopButton() {
   const [visible, setVisible] = useState<boolean>(false);

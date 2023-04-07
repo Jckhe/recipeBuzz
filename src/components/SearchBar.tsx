@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Input,
   InputGroup,
@@ -22,6 +22,12 @@ const SearchBar = () => {
     setSearchTerm("");
   };
 
+  const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onPressHandler();
+    }
+  };
+
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
@@ -34,11 +40,15 @@ const SearchBar = () => {
         placeholder="Search recipes..."
         value={searchTerm}
         onChange={onInputChange}
+        onKeyPress={onKeyPressHandler}
       />
-      <InputRightElement>
+      <InputRightElement >
         <IconButton
           onClick={onPressHandler}
           aria-label="Search"
+          borderRadius={120}
+          background="transparent"
+          size="sm"
           icon={<SearchIcon />}
         />
       </InputRightElement>

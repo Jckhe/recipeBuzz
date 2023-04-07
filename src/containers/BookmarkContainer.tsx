@@ -1,5 +1,5 @@
 import RecipeCard from "@/components/RecipeCards";
-import { Box, Wrap, WrapItem } from "@chakra-ui/react";
+import { Wrap, WrapItem } from "@chakra-ui/react";
 import { RecipeCardType } from "@/types/Redux.types";
 
 
