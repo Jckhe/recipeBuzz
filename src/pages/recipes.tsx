@@ -1,10 +1,9 @@
-import { Box, Heading, Wrap, WrapItem, Divider} from "@chakra-ui/react";
+import { Box, Heading, Divider} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import store, { RootState, wrapper } from "@/store";
 import { selectSavedCards } from "@/store/slices/mainSlice";
 import BookmarkContainer from "@/containers/BookmarkContainer";
 import { syncSavedCards } from '@/store/slices/mainSlice';
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 
 // export const getServerSideProps = wrapper.getServerSideProps(async (context: GetServerSidePropsContext) => {
