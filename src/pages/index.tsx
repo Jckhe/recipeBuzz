@@ -1,7 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import Hero from "@/components/Hero";
 import Search from "@/components/Search";
-import ScrollTopButton from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
     >
       <Hero />
       <Search />
-      <ScrollTopButton />
     </Box>
   );
 }
