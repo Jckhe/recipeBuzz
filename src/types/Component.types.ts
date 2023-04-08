@@ -10,6 +10,11 @@ export interface RecipeModalProps {
   onClose: () => void;
 }
 
+export interface SuspenseModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export interface SearchBarProps {
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   searchTerm: string

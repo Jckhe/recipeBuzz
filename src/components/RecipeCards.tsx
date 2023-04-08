@@ -4,12 +4,12 @@ import { useState } from "react";
 import { StarIcon } from "@chakra-ui/icons";
 import { saveRecipe, deleteRecipe, selectSavedCards } from "@/store/slices/mainSlice";
 import { useDispatch, useSelector } from "react-redux";
-import RecipeModal from "./RecipeModal";
 import { RootState, AppDispatch } from "@/store";
 import { ThunkDispatch, Action } from "@reduxjs/toolkit";
 import { RecipeCardProps } from "@/types/Component.types";
-
-
+import { RecipeCardType } from "@/types/Redux.types";
+import SuspenseModal from "./SuspenseModal";
+const LazyLoadRecipeModal = React.lazy(() => import("./RecipeModal"))
 
 //RecipeCard Component
 //Each recipe object returned from the API will render a RecipeCard component with their details 
@@ -19,7 +19,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   const savedCards = useSelector(selectSavedCards);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const isSaved = savedCards.some((savedCard) => savedCard.idMeal === recipe.idMeal);
+  const isSaved = savedCards.some((savedCard: RecipeCardType) => savedCard.idMeal === recipe.idMeal);
 
   const handleSaveClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
@@ -122,7 +122,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
         </Text>
       </Box>
       {/* Lazy loading the modal will make this more efficient */}
-      <RecipeModal isOpen={showModal} onClose={() => setShowModal(false)} recipe={recipe} />
+      {showModal && (
+      <React.Suspense fallback={<SuspenseModal isOpen={showModal} onClose={() => setShowModal(false)} />}>
+        <LazyLoadRecipeModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          recipe={recipe}
+        />
+      </React.Suspense>)}
     </Box>
   );
 };
