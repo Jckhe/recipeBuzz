@@ -23,7 +23,7 @@ export interface SearchBarProps {
 }
 
 export interface IndexContainerProps {
-  recipeCards: RecipeCardType[];
+  searchTerm: string;
 }
 
 export interface BookmarkContainerProps {

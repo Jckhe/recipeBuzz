@@ -6,6 +6,8 @@ import { useState } from "react";
 import debounce from "lodash.debounce";
 import { useQuery } from "@tanstack/react-query";
 import { RecipeCardType } from "@/types/Redux.types";
+import { useDispatch } from "react-redux";
+import { updateSearchedCards } from "@/store/slices/mainSlice";
 
 
 
@@ -14,17 +16,23 @@ import { RecipeCardType } from "@/types/Redux.types";
 // This is the component where the searching and display of searched recipe cards will display
 // This component is rendered on the index.tsx component in the index page.
 export default function Search() {
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
 
 
   const { data, refetch }: {data?: RecipeCardType[], refetch: any} = useQuery<RecipeCardType[]>(
     ["searchMeals", searchTerm],
     () => searchMeals({query: searchTerm}),
-    { enabled: false}
+    { enabled: false,
+    onSuccess: (res) => {
+      console.log("Success Query: " + res);
+      dispatch(updateSearchedCards(res))
+    }
+    },
   )
 
   //helps throttle the query so we dont get rate limited.
-  const debouncedRefetch = debounce(refetch, 1500);
+  const debouncedRefetch = debounce(refetch, 1000);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -48,7 +56,7 @@ export default function Search() {
         Explore, Search, and Save.
       </Heading>
       <SearchBar searchTerm={searchTerm} onInputChange={onInputChange} />
-      <IndexContainer recipeCards={data || []} />
+      <IndexContainer searchTerm={searchTerm} />
     </Box>
   )
 }

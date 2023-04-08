@@ -10,12 +10,13 @@ import {
   Slide,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { selectLoading, selectError } from "@/store/slices/mainSlice";
+import { selectLoading, selectError, selectSearchedCards } from "@/store/slices/mainSlice";
 import RecipeCard from "../components/RecipeCards";
 import { useEffect, useState, useMemo } from "react";
 import { IndexContainerProps } from "@/types/Component.types";
 
-const IndexContainer = ({ recipeCards }: IndexContainerProps) => {
+const IndexContainer = ({searchTerm}: IndexContainerProps) => {
+  const recipeCards = useSelector(selectSearchedCards);
   const [showSavedAlert, toggleSavedAlert] = useState<boolean>(false);
   const [showDeleteAlert, toggleDeleteAlert] = useState<boolean>(false);
   const isLoading = useSelector(selectLoading);
@@ -187,15 +188,19 @@ const IndexContainer = ({ recipeCards }: IndexContainerProps) => {
           width="100%"
           justify="center"
         >
-          {recipeCards.map((recipeCard) => (
-            <WrapItem key={recipeCard.idMeal}>
-              <RecipeCard
-                toggleSavedAlert={toggleSavedAlert}
-                toggleDeleteAlert={toggleDeleteAlert}
-                recipe={recipeCard}
-              />
-            </WrapItem>
-          ))}
+        {recipeCards
+        .filter((recipeCard) =>
+          recipeCard.strMeal.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .map((recipeCard) => (
+          <WrapItem key={recipeCard.idMeal}>
+            <RecipeCard
+              toggleSavedAlert={toggleSavedAlert}
+              toggleDeleteAlert={toggleDeleteAlert}
+              recipe={recipeCard}
+            />
+          </WrapItem>
+        ))}
         </Wrap>
       ) : (
         <Heading
