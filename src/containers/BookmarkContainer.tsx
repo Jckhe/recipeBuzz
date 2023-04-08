@@ -2,8 +2,12 @@ import RecipeCard from "@/components/RecipeCards";
 import { Wrap, WrapItem } from "@chakra-ui/react";
 import { RecipeCardType } from "@/types/Redux.types";
 import { BookmarkContainerProps } from "@/types/Component.types";
+import { useState } from "react";
 
 export default function BookmarkContainer({savedCards}: BookmarkContainerProps) {
+  const [showSavedAlert, toggleSavedAlert] = useState<boolean>(false);
+  const [showDeleteAlert, toggleDeleteAlert] = useState<boolean>(false);
+
   return (
     <Wrap
     css={{
@@ -28,7 +32,11 @@ export default function BookmarkContainer({savedCards}: BookmarkContainerProps) 
     >
         {savedCards.map((recipeCard: RecipeCardType) => (
           <WrapItem key={recipeCard.idMeal}>
-            <RecipeCard recipe={recipeCard} />
+              <RecipeCard
+                toggleSavedAlert={toggleSavedAlert}
+                toggleDeleteAlert={toggleDeleteAlert}
+                recipe={recipeCard}
+              />
           </WrapItem>
         ))
         }

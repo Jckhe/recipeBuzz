@@ -8,7 +8,7 @@ export interface RecipeCardType {
   strTags: string;
   strYoutube: string;
   strIngredient: { [key: number]: string };
-  strMeasure: { [key: number]: string };
+  strMeasure: { [key: number]: string | null };
   isSaved: boolean
 }
 

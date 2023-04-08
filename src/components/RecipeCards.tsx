@@ -13,7 +13,7 @@ const LazyLoadRecipeModal = React.lazy(() => import("./RecipeModal"))
 
 //RecipeCard Component
 //Each recipe object returned from the API will render a RecipeCard component with their details 
-const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggleDeleteAlert }) => {
   const dispatch: ThunkDispatch<RootState, undefined, Action> =
     useDispatch<AppDispatch>();
   const savedCards = useSelector(selectSavedCards);
@@ -25,8 +25,10 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
     event.stopPropagation();
     if (isSaved) {
       dispatch(deleteRecipe(recipe.idMeal));
+      toggleDeleteAlert(true)
     } else {
       dispatch(saveRecipe(recipe));
+      toggleSavedAlert(true)
     }
   };
 

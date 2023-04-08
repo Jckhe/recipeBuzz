@@ -2,6 +2,8 @@ import { RecipeCardType } from "./Redux.types";
 
 export interface RecipeCardProps {
   recipe: RecipeCardType;
+  toggleSavedAlert: (arg0: boolean) => void;
+  toggleDeleteAlert: (arg0: boolean) => void;
 }
 
 export interface RecipeModalProps {
