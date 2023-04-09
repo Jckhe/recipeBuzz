@@ -24,6 +24,7 @@ export interface SearchBarProps {
 
 export interface IndexContainerProps {
   searchTerm: string;
+  onInputChange:  (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface BookmarkContainerProps {

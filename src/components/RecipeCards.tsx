@@ -8,7 +8,6 @@ import { RootState, AppDispatch } from "@/store";
 import { ThunkDispatch, Action } from "@reduxjs/toolkit";
 import { RecipeCardProps } from "@/types/Component.types";
 import { RecipeCardType } from "@/types/Redux.types";
-import RecipeModal from "./RecipeModal";
 import SuspenseModal from "./SuspenseModal";
 const LazyLoadRecipeModal = React.lazy(() => import("./RecipeModal"))
 
@@ -51,10 +50,10 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggl
       overflow="hidden"
       width="xs"
       backgroundColor="white"
-      transform={isHovered ? "scale(1.02)" : "scale(1.00)"}
+      transform={isHovered ? "scale(1.01)" : "scale(1.00)"}
       cursor="pointer"
       display="flex"
-      transition="all 0.15s ease-in"
+      transition="all 0.1s ease-in-out"
       flexDirection="column"
       alignItems="center"
       onMouseEnter={() => setIsHovered(true)}
@@ -90,9 +89,6 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggl
         maxH="32"
         boxShadow={isHovered ? "xl" : "md"}
         transition="all 0.15s ease-in"
-        _hover={{
-          boxShadow: "xl",
-        }}
       />
 
       <Box p="6" display="flex" flexDirection="column" alignItems="center">
@@ -133,11 +129,6 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggl
           recipe={recipe}
         />
       </React.Suspense>)}
-              {/* <RecipeModal
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-          recipe={recipe}
-        /> */}
     </Box>
   );
 };

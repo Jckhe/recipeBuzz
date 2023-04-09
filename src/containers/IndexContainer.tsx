@@ -14,8 +14,9 @@ import { selectLoading, selectError, selectSearchedCards } from "@/store/slices/
 import RecipeCard from "../components/RecipeCards";
 import { useEffect, useState, useMemo } from "react";
 import { IndexContainerProps } from "@/types/Component.types";
+import SearchBar from "@/components/SearchBar";
 
-const IndexContainer = ({searchTerm}: IndexContainerProps) => {
+const IndexContainer = ({searchTerm, onInputChange}: IndexContainerProps) => {
   const recipeCards = useSelector(selectSearchedCards);
   const [showSavedAlert, toggleSavedAlert] = useState<boolean>(false);
   const [showDeleteAlert, toggleDeleteAlert] = useState<boolean>(false);
@@ -129,7 +130,7 @@ const IndexContainer = ({searchTerm}: IndexContainerProps) => {
       borderRadius={3}
       display="flex"
       flexDirection="column"
-      justifyContent="center"
+      alignItems="center"
     >
       {/* Saved Alert */}
       <Slide
@@ -166,6 +167,7 @@ const IndexContainer = ({searchTerm}: IndexContainerProps) => {
           Recipe Un-Saved!
         </Alert>
       </Slide>
+      <SearchBar searchTerm={searchTerm} onInputChange={onInputChange} />
       {recipeCards.length ? (
         <Wrap
           css={{

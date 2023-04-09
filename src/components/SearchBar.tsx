@@ -21,24 +21,36 @@ const SearchBar = ({onInputChange, searchTerm}: SearchBarProps) => {
   // };
 
   return (
-    <InputGroup m={10} width={{"base": '75%', "sm": '50%'}}>
+    <InputGroup m={10} width={{"base": '75%', "sm": '70%'}}>
       <Input
         variant="filled"
         color="blackAlpha.500"
+        borderRadius={0}
+        fontFamily="junicode"
+        fontWeight="bold"
         placeholder="Search recipes..."
         value={searchTerm}
+        textAlign="center"
+        textColor="black"
         onChange={onInputChange}
+        _focus={{
+          backgroundColor: 'white',
+          '::placeholder': {
+            opacity: 0,
+          },
+        }}
         // onKeyPress={onKeyPressHandler}
       />
       <InputRightElement >
-        <IconButton
+        {/* <IconButton
           // onClick={onPressHandler}
           aria-label="Search"
           borderRadius={120}
           background="transparent"
           size="sm"
           icon={<SearchIcon />}
-        />
+        /> */}
+        <SearchIcon />
       </InputRightElement>
     </InputGroup>
   );
