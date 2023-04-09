@@ -6,8 +6,6 @@ import { RootState } from '../index';
 const initialState: InitialState = {
   SearchedCards: [],
   SavedCards: [],
-  loading: false,
-  error: null
 };
 
 if (typeof window !== 'undefined') {
@@ -92,7 +90,5 @@ export const { saveRecipe, deleteRecipe, syncSavedCards, updateSearchedCards } =
 
 export const selectSavedCards = (state: RootState) => state.mainSlice.SavedCards;
 export const selectSearchedCards = (state: RootState) => state.mainSlice.SearchedCards;
-export const selectLoading = (state: RootState) => state.mainSlice.loading;
-export const selectError = (state: RootState) => state.mainSlice.error;
 
 export default mainSlice.reducer;

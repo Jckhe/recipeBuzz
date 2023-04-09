@@ -4,6 +4,7 @@ export interface RecipeCardProps {
   recipe: RecipeCardType;
   toggleSavedAlert: (arg0: boolean) => void;
   toggleDeleteAlert: (arg0: boolean) => void;
+  isLoading: boolean;
 }
 
 export interface RecipeModalProps {
@@ -25,6 +26,8 @@ export interface SearchBarProps {
 export interface IndexContainerProps {
   searchTerm: string;
   onInputChange:  (event: React.ChangeEvent<HTMLInputElement>) => void;
+  isLoading: boolean;
+  error: any;
 }
 
 export interface BookmarkContainerProps {

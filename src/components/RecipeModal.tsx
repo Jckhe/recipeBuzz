@@ -19,102 +19,142 @@ import {
   TabPanel,
   TabPanels,
 } from "@chakra-ui/react";
-import { FaYoutube } from 'react-icons/fa';
-
+import { FaYoutube } from "react-icons/fa";
 
 //The recipe modal is the pop up that will display more information and expanded view of the recipe card.
 // this component rests within the Recipe Card component and is lazy loaded UNTIL the modal's state is true.
 
-const RecipeModal:React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) => {
+const RecipeModal: React.FC<RecipeModalProps> = ({
+  recipe,
+  isOpen,
+  onClose,
+}) => {
   //parses the instructions into line breaks
   function formatInstructions(instructions: string) {
     return instructions.split("\n").map((instruction, index) => (
-      <Text key={index} mt={2} dangerouslySetInnerHTML={{__html: instruction.replace(/\n/g, '<br/>')}}></Text>
+      <Text
+        key={index}
+        mt={2}
+        dangerouslySetInnerHTML={{
+          __html: instruction.replace(/\n/g, "<br/>"),
+        }}
+      ></Text>
     ));
   }
 
   function openURL() {
     const url = recipe.strYoutube;
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   }
 
-    // Convert the recipe object to arrays for ingredients and measurements
+  // Convert the recipe object to arrays for ingredients and measurements
   const ingredients = [];
   const measurements = [];
 
   for (let i = 1; i <= 20; i++) {
     const ingredientKey = `strIngredient${i}` as keyof RecipeCardType;
     const measureKey = `strMeasure${i}` as keyof RecipeCardType;
-    if (recipe[ingredientKey]) ingredients.push({ key: ingredientKey, value: recipe[ingredientKey] });
-    if (recipe[measureKey]) measurements.push({ key: measureKey, value: recipe[measureKey] });
+    if (recipe[ingredientKey])
+      ingredients.push({ key: ingredientKey, value: recipe[ingredientKey] });
+    if (recipe[measureKey])
+      measurements.push({ key: measureKey, value: recipe[measureKey] });
   }
-
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent maxH="120%" minH="100%" maxW="80%" p={5}>
+      <ModalContent
+        height={{
+          'base': 'auto',
+          'sm': '90%'
+        }}
+        overflow="hidden"
+        maxW={{ base: "87.5%", md: "80%" }}
+        p={5}
+      >
         <ModalHeader
-        textAlign="center"
-        fontFamily="junicode"
-        fontSize={35}
-        display="flex"
-        flexDirection="column"
+          textAlign="center"
+          fontFamily="junicode"
+          fontSize={35}
+          display="flex"
+          flexDirection="column"
         >
           {recipe.strMeal}
         </ModalHeader>
         <ModalCloseButton />
-        <ModalBody justifyContent="flex-start" display="flex" alignItems="center" gap={3} flexDirection="column">
-          <Box
-          height="10%"
-          width="20%"
+        <ModalBody
+          justifyContent="flex-start"
+          display="flex"
+          alignItems="center"
+          gap={3}
+          height="100%"
+          flexDirection="column"
+        >
+          <Box height={{
+            'base': '15%',
+            'sm': '25%',
+            'md': '30%'
+          }} 
+          width={{
+            'base': '50%',
+            'sm': '20%',
+            'md': '17.5%'
+          }}
           >
-            <Image border="1px solid gray" height="100%" width="100%" src={recipe.strMealThumb} alt={recipe.strMeal} />
+            <Image
+              border="1px solid gray"
+              height="100%"
+              width="100%"
+              src={recipe.strMealThumb}
+              alt={recipe.strMeal}
+            />
           </Box>
-          <Button onClick={openURL} width="10%" colorScheme='red' leftIcon={<FaYoutube />}>
+          <Button
+            onClick={openURL}
+            width={{
+              'base': '50%',
+              'sm': '20%',
+              'md': '12.5%',
+            }}
+            colorScheme="red"
+            leftIcon={<FaYoutube />}
+          >
             <Text fontFamily="junicode">Youtube</Text>
           </Button>
-          <Box
-          display="flex"
-          flexDirection="column"
-          width="80%"
-          border="1px solid black"
+          <Tabs
+          width={{
+            'base': 'auto',
+            'md': '100%'
+          }}
+          height={{
+            'base': '100%',
+          }}
           >
-            <Tabs>
-              <TabList
-              justifyContent="center"
-              >
-                <Tab>Instructions</Tab>
-                <Tab>Ingredients</Tab>
-                <Tab>Measurements</Tab>
-              </TabList>
-              <TabPanels
-              height="45vh"
-              >
-              <TabPanel>
-                  <Box height="100%" maxHeight="40vh" overflowY="scroll">
-                    {formatInstructions(recipe.strInstructions)}
-                  </Box>
+            <TabList justifyContent="center">
+              <Tab>Instructions</Tab>
+              <Tab>Ingredients</Tab>
+              <Tab>Measurements</Tab>
+            </TabList>
+              <TabPanels p={5} width="100%" height="60%">
+                <TabPanel borderBottom={{'base': "1px solid black", 'sm': 'none'}} height={{'base': '80%', 'sm': '130%'}} width="100%" overflowY={{'base': 'hidden', 'sm': 'scroll'}}>
+                  {formatInstructions(recipe.strInstructions)}
                 </TabPanel>
-                <TabPanel>
-                  <Box height="100%" maxHeight="40vh" overflowY="scroll">
-                    <UnorderedList>
-                      {ingredients.map(({key, value}) => (
-                      <ListItem key={key}>{value}</ListItem>))}
+                <TabPanel borderBottom={{'base': "1px solid black", 'sm': 'none'}} height={{'base': '80%', 'sm': '130%'}} width="100%" overflowY={{'base': 'hidden', 'sm': 'scroll'}} >
+                  <UnorderedList>
+                      {ingredients.map(({ key, value }) => (
+                        <ListItem key={key}>{value}</ListItem>
+                      ))}
                     </UnorderedList>
-                  </Box>
                 </TabPanel>
-                <TabPanel>
-                  <Box height="100%" maxHeight="40vh" overflowY="scroll">
+                <TabPanel borderBottom={{'base': "1px solid black", 'sm': 'none'}} height={{'base': '80%', 'sm': '130%'}} width="100%" overflowY={{'base': 'hidden', 'sm': 'scroll'}} >
                     <UnorderedList>
-                      {measurements.map(({key, value}) => (
-                      <ListItem key={key}>{value}</ListItem>))}
+                      {measurements.map(({ key, value }) => (
+                        <ListItem key={key}>{value}</ListItem>
+                      ))}
                     </UnorderedList>
-                  </Box>
                 </TabPanel>
               </TabPanels>
             </Tabs>
-          </Box>
         </ModalBody>
       </ModalContent>
     </Modal>

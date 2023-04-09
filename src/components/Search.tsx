@@ -9,54 +9,59 @@ import { RecipeCardType } from "@/types/Redux.types";
 import { useDispatch } from "react-redux";
 import { updateSearchedCards } from "@/store/slices/mainSlice";
 
-
-
-
-
 // This is the component where the searching and display of searched recipe cards will display
 // This component is rendered on the index.tsx component in the index page.
 export default function Search() {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
 
-
-  const { data, refetch }: {data?: RecipeCardType[], refetch: any} = useQuery<RecipeCardType[]>(
+  const {
+    data,
+    refetch,
+    error,
+    isFetching,
+  }: {
+    data?: RecipeCardType[];
+    refetch: any;
+    error: any;
+    isFetching: boolean;
+  } = useQuery<RecipeCardType[]>(
     ["searchMeals", searchTerm],
-    () => searchMeals({query: searchTerm}),
-    { enabled: false,
-    onSuccess: (res) => {
-      dispatch(updateSearchedCards(res))
+    () => searchMeals({ query: searchTerm }),
+    {
+      enabled: false,
+      onSuccess: (res) => {
+        dispatch(updateSearchedCards(res));
+      },
     }
-    },
-  )
+  );
 
   //helps throttle the query so we dont get rate limited.
   const debouncedRefetch = debounce(refetch, 1000);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
-    debouncedRefetch()
+    debouncedRefetch();
   };
-  
 
   return (
     <Box
-    mt={20}
-    className="SearchComponent"
-    id="search"
-    width="100%"
-    height="120vh"
-    display="flex"
-    flexDirection="column"
-    justifyContent="center"
-    alignItems="center"
+      mt={20}
+      className="SearchComponent"
+      id="search"
+      width="100%"
+      height="120vh"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
     >
       <Heading fontFamily="EBGaramond08-Regular">
         Explore, Search, and Save.
       </Heading>
-      <IndexContainer searchTerm={searchTerm} onInputChange={onInputChange} />
+      <IndexContainer isLoading={isFetching} error={error} searchTerm={searchTerm} onInputChange={onInputChange} />
     </Box>
-  )
+  );
 }
 
 // DUMMY DATA RECIPE CARD:

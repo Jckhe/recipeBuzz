@@ -1,4 +1,4 @@
-import { Box, Image, Heading, Text, Flex, IconButton } from "@chakra-ui/react";
+import { Box, Image, Heading, Text, Flex, IconButton, Spinner } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
 import { StarIcon } from "@chakra-ui/icons";
@@ -13,7 +13,7 @@ const LazyLoadRecipeModal = React.lazy(() => import("./RecipeModal"))
 
 //RecipeCard Component
 //Each recipe object returned from the API will render a RecipeCard component with their details 
-const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggleDeleteAlert }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggleDeleteAlert, isLoading }) => {
   const dispatch: ThunkDispatch<RootState, undefined, Action> =
     useDispatch<AppDispatch>();
   const savedCards = useSelector(selectSavedCards);
@@ -35,6 +35,40 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggl
   const handleClick = () => {
     setShowModal(true);
   };
+
+  if (isLoading) {
+    return (
+      <Box
+      border={
+        !isHovered
+          ? "1px solid rgba(105, 104, 101, 0.7)"
+          : "1px solid rgba(105, 104, 101, 1)"
+      }
+      onClick={handleClick}
+      height="md"
+      padding={10}
+      borderRadius="lg"
+      overflow="hidden"
+      width="xs"
+      backgroundColor="white"
+      transform={isHovered ? "scale(1.01)" : "scale(1.00)"}
+      cursor="pointer"
+      display="flex"
+      transition="all 0.1s ease-in-out"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      boxShadow={isHovered ? "xl" : "md"}
+      _hover={{
+        boxShadow: "xl",
+      }}
+    >
+      <Spinner size="xl" />
+    </Box>
+    )
+  }
 
   return (
     <Box

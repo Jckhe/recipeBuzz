@@ -10,18 +10,17 @@ import {
   Slide,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { selectLoading, selectError, selectSearchedCards } from "@/store/slices/mainSlice";
+import { selectSearchedCards } from "@/store/slices/mainSlice";
 import RecipeCard from "../components/RecipeCards";
 import { useEffect, useState, useMemo } from "react";
 import { IndexContainerProps } from "@/types/Component.types";
 import SearchBar from "@/components/SearchBar";
+import { RecipeCardType } from "@/types/Redux.types";
 
-const IndexContainer = ({searchTerm, onInputChange}: IndexContainerProps) => {
+const IndexContainer = ({searchTerm, onInputChange, isLoading, error}: IndexContainerProps) => {
   const recipeCards = useSelector(selectSearchedCards);
   const [showSavedAlert, toggleSavedAlert] = useState<boolean>(false);
   const [showDeleteAlert, toggleDeleteAlert] = useState<boolean>(false);
-  const isLoading = useSelector(selectLoading);
-  const isError = useSelector(selectError);
   const images = useMemo(
     () => [
       "https://images.unsplash.com/photo-1549590143-d5855148a9d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80",
@@ -33,43 +32,28 @@ const IndexContainer = ({searchTerm, onInputChange}: IndexContainerProps) => {
   );
   const [currentImage, setCurrentImage] = useState(images[0]);
 
-  //Rerender for SAVED alerts
-  useEffect(() => {
-    if (showSavedAlert && !showDeleteAlert) {
-      const timeoutId = setTimeout(() => {
-        toggleSavedAlert(false);
-      }, 3000);
-      //clean up
-      return () => clearTimeout(timeoutId);
-    }
-    else {
-      toggleDeleteAlert(false)
-      const timeoutId = setTimeout(() => {
-        toggleSavedAlert(false);
-      }, 3000);
-      //clean up
-      return () => clearTimeout(timeoutId);
-    }
-  }, [showSavedAlert]);
 
-  //Rerender for DELETE alerts
+  // UseEffect to handle alerts
   useEffect(() => {
-    if (showDeleteAlert && !showSavedAlert) {
-      const timeoutId = setTimeout(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  
+    if (showSavedAlert) {
+      timeoutId = setTimeout(() => {
+        toggleSavedAlert(false);
+      }, 3000);
+    } else if (showDeleteAlert) {
+      timeoutId = setTimeout(() => {
         toggleDeleteAlert(false);
       }, 3000);
-      //clean up
-      return () => clearTimeout(timeoutId);
     }
-    else {
-      toggleSavedAlert(false);
-      const timeoutId = setTimeout(() => {
-        toggleDeleteAlert(false);
-      }, 3000);
-      //clean up
-      return () => clearTimeout(timeoutId);
-    }
-  }, [showDeleteAlert]);
+  
+    // Clean up
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [showSavedAlert, showDeleteAlert]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -81,42 +65,6 @@ const IndexContainer = ({searchTerm, onInputChange}: IndexContainerProps) => {
 
     return () => clearInterval(intervalId);
   }, [currentImage, images]);
-
-  if (isLoading) {
-    return (
-      <Box
-        background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
-        backgroundSize="cover"
-        minHeight={{ base: "60vh", sm: "85vh", md: "95vh" }}
-        display="flex"
-        justifyContent="center"
-        width="80%"
-        alignItems="center"
-        border="1px solid #66635c"
-        borderRadius={10}
-      >
-        <Spinner size="xl" />
-      </Box>
-    );
-  }
-
-  if (isError !== null) {
-    return (
-      <Box
-        background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
-        backgroundSize="cover"
-        minHeight={{ base: "60vh", sm: "85vh", md: "95vh" }}
-        display="flex"
-        justifyContent="center"
-        width={{ base: "95%", sm: "80%" }}
-        alignItems="center"
-        border="1px solid #66635c"
-        borderRadius={10}
-      >
-        <Text>No recipes found! Try again another keyword.</Text>
-      </Box>
-    );
-  }
 
   return (
     <Box
@@ -191,12 +139,13 @@ const IndexContainer = ({searchTerm, onInputChange}: IndexContainerProps) => {
           justify="center"
         >
         {recipeCards
-        .filter((recipeCard) =>
+        .filter((recipeCard: RecipeCardType) =>
           recipeCard.strMeal.toLowerCase().includes(searchTerm.toLowerCase())
         )
-        .map((recipeCard) => (
+        .map((recipeCard: RecipeCardType) => (
           <WrapItem key={recipeCard.idMeal}>
             <RecipeCard
+              isLoading={isLoading}
               toggleSavedAlert={toggleSavedAlert}
               toggleDeleteAlert={toggleDeleteAlert}
               recipe={recipeCard}
@@ -219,3 +168,40 @@ const IndexContainer = ({searchTerm, onInputChange}: IndexContainerProps) => {
 };
 
 export default IndexContainer;
+
+
+  // if (isLoading) {
+  //   return (
+  //     <Box
+  //       background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
+  //       backgroundSize="cover"
+  //       minHeight={{ base: "60vh", sm: "85vh", md: "95vh" }}
+  //       display="flex"
+  //       justifyContent="center"
+  //       width="80%"
+  //       alignItems="center"
+  //       border="1px solid #66635c"
+  //       borderRadius={10}
+  //     >
+  //       <Spinner size="xl" />
+  //     </Box>
+  //   );
+  // }
+
+  // if (error !== null) {
+  //   return (
+  //     <Box
+  //       background={`linear-gradient(0deg, rgba(123, 127, 131, 0.4), rgba(123, 127, 131, 0.9)), url(${currentImage})`}
+  //       backgroundSize="cover"
+  //       minHeight={{ base: "60vh", sm: "85vh", md: "95vh" }}
+  //       display="flex"
+  //       justifyContent="center"
+  //       width={{ base: "95%", sm: "80%" }}
+  //       alignItems="center"
+  //       border="1px solid #66635c"
+  //       borderRadius={10}
+  //     >
+  //       <Text>No recipes found! Try again another keyword.</Text>
+  //     </Box>
+  //   );
+  // }

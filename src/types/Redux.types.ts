@@ -58,6 +58,4 @@ export interface RecipeCardType {
 export interface InitialState {
   SearchedCards: RecipeCardType[];
   SavedCards: RecipeCardType[];
-  loading: boolean;
-  error?: string | null;
 }
