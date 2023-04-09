@@ -159,7 +159,7 @@ const IndexContainer = ({searchTerm}: IndexContainerProps) => {
           display="flex"
           flexDirection="row"
           justifyContent="center"
-          status="success"
+          status="info"
           variant="solid"
         >
           <AlertIcon />

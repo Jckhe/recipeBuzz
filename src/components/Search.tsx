@@ -25,7 +25,6 @@ export default function Search() {
     () => searchMeals({query: searchTerm}),
     { enabled: false,
     onSuccess: (res) => {
-      console.log("Success Query: " + res);
       dispatch(updateSearchedCards(res))
     }
     },

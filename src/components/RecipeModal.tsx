@@ -26,22 +26,29 @@ import { FaYoutube } from 'react-icons/fa';
 // this component rests within the Recipe Card component and is lazy loaded UNTIL the modal's state is true.
 
 const RecipeModal:React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) => {
+  //parses the instructions into line breaks
+  function formatInstructions(instructions: string) {
+    return instructions.split("\n").map((instruction, index) => (
+      <Text key={index} mt={2} dangerouslySetInnerHTML={{__html: instruction.replace(/\n/g, '<br/>')}}></Text>
+    ));
+  }
 
-//parses the instructions into line breaks
-function formatInstructions(instructions: string) {
-  return instructions.split("\n").map((instruction, index) => (
-    <Text key={index} mt={2} dangerouslySetInnerHTML={{__html: instruction.replace(/\n/g, '<br/>')}}></Text>
-  ));
-}
+  function openURL() {
+    const url = recipe.strYoutube;
+    window.open(url, '_blank');
+  }
 
-function openURL() {
-  const url = recipe.strYoutube;
-  window.open(url, '_blank');
-}
+    // Convert the recipe object to arrays for ingredients and measurements
+  const ingredients = [];
+  const measurements = [];
 
-  //converts the ingredients object to an array
-  const ingredients = Object.entries(recipe.strIngredient).map(([key, value]) => ({key, value}));
-  const measurements = Object.entries(recipe.strMeasure).map(([key, value]) => ({key, value}));
+  for (let i = 1; i <= 20; i++) {
+    const ingredientKey = `strIngredient${i}` as keyof RecipeCardType;
+    const measureKey = `strMeasure${i}` as keyof RecipeCardType;
+    if (recipe[ingredientKey]) ingredients.push({ key: ingredientKey, value: recipe[ingredientKey] });
+    if (recipe[measureKey]) measurements.push({ key: measureKey, value: recipe[measureKey] });
+  }
+
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

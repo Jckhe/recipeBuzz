@@ -8,6 +8,7 @@ import { RootState, AppDispatch } from "@/store";
 import { ThunkDispatch, Action } from "@reduxjs/toolkit";
 import { RecipeCardProps } from "@/types/Component.types";
 import { RecipeCardType } from "@/types/Redux.types";
+import RecipeModal from "./RecipeModal";
 import SuspenseModal from "./SuspenseModal";
 const LazyLoadRecipeModal = React.lazy(() => import("./RecipeModal"))
 
@@ -132,6 +133,11 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggl
           recipe={recipe}
         />
       </React.Suspense>)}
+              {/* <RecipeModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          recipe={recipe}
+        /> */}
     </Box>
   );
 };

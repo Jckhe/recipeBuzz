@@ -20,8 +20,6 @@ const SearchBar = ({onInputChange, searchTerm}: SearchBarProps) => {
   //   }
   // };
 
-
-
   return (
     <InputGroup m={10} width={{"base": '75%', "sm": '50%'}}>
       <Input
