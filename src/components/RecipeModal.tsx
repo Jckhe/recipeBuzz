@@ -58,6 +58,9 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
       ingredients.push({ key: ingredientKey, value: recipe[ingredientKey] });
     if (recipe[measureKey])
       measurements.push({ key: measureKey, value: recipe[measureKey] });
+    if (!recipe[ingredientKey] && !recipe[measureKey]) {
+      break;
+    }
   }
 
   return (
@@ -66,7 +69,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
       <ModalContent
         height={{
           'base': 'auto',
-          'sm': '90%'
+          'sm': '100%'
         }}
         overflow="hidden"
         maxW={{ base: "87.5%", md: "80%" }}
@@ -90,7 +93,10 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
           height="100%"
           flexDirection="column"
         >
-          <Box height={{
+          <Box 
+          display="flex"
+          objectFit="contain"
+          height={{
             'base': '15%',
             'sm': '25%',
             'md': '30%'
@@ -109,18 +115,21 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
               alt={recipe.strMeal}
             />
           </Box>
-          <Button
-            onClick={openURL}
-            width={{
-              'base': '50%',
-              'sm': '20%',
-              'md': '12.5%',
-            }}
-            colorScheme="red"
-            leftIcon={<FaYoutube />}
-          >
-            <Text fontFamily="junicode">Youtube</Text>
-          </Button>
+            <Box height="10%">
+              <Button
+              onClick={openURL}
+              // width={{
+              //   'base': '50%',
+              //   'sm': '20%',
+              //   'md': '12.5%',
+              // }}
+              size="md"
+              colorScheme="red"
+              leftIcon={<FaYoutube />}
+            >
+              <Text fontFamily="junicode">Youtube</Text>
+            </Button>
+            </Box>
           <Tabs
           width={{
             'base': 'auto',
