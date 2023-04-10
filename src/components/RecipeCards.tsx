@@ -116,7 +116,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggl
       <Image
         src={recipe.strMealThumb}
         alt={recipe.strMeal}
-        loading="lazy"
+        // loading="lazy"
         border="1px solid gray"
         borderRadius={2}
         objectFit="cover"

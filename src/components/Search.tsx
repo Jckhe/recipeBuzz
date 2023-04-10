@@ -2,7 +2,7 @@ import IndexContainer from "@/containers/IndexContainer";
 import SearchBar from "./SearchBar";
 import { Box, Heading } from "@chakra-ui/react";
 import { searchMeals } from "@/pages/api/Search";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { useQuery } from "@tanstack/react-query";
 import { RecipeCardType } from "@/types/Redux.types";
@@ -14,6 +14,10 @@ import { updateSearchedCards } from "@/store/slices/mainSlice";
 export default function Search() {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
+
+  //FIRST DEBOUNCE should be set off sooner because its the initial search.
+  const isFirstDebounceRef = useRef(true);
+  const [debounceInterval, setDebounceInterval] = useState(150);
 
   const {
     data,
@@ -36,13 +40,24 @@ export default function Search() {
     }
   );
 
-  //helps throttle the query so we dont get rate limited.
-  const debouncedRefetch = debounce(refetch, 1000);
-
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     debouncedRefetch();
+    //conditional, minimal but prevents unnecessary runtime
+    if (isFirstDebounceRef.current) isFirstDebounceRef.current = false;
   };
+
+  //helps throttle the query so we dont get rate limited.
+  const debouncedRefetch = debounce(refetch, debounceInterval);
+
+
+  //THIS gets called AFTER onIputChange
+  //AFTER initial search we will delay the debounce rate.
+  useEffect(() => {
+    if (!isFirstDebounceRef.current) {
+      setDebounceInterval(1500); 
+    }
+  }, [isFirstDebounceRef]);
 
   return (
     <Box
