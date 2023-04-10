@@ -4,7 +4,6 @@ export interface RecipeCardProps {
   recipe: RecipeCardType;
   toggleSavedAlert: (arg0: boolean) => void;
   toggleDeleteAlert: (arg0: boolean) => void;
-  isLoading: boolean;
 }
 
 export interface RecipeModalProps {

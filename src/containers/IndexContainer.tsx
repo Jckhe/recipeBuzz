@@ -145,7 +145,6 @@ const IndexContainer = ({searchTerm, onInputChange, isLoading, error}: IndexCont
         .map((recipeCard: RecipeCardType) => (
           <WrapItem key={recipeCard.idMeal}>
             <RecipeCard
-              isLoading={isLoading}
               toggleSavedAlert={toggleSavedAlert}
               toggleDeleteAlert={toggleDeleteAlert}
               recipe={recipeCard}
