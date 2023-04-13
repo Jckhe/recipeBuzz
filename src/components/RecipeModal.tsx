@@ -1,5 +1,6 @@
 import { RecipeModalProps } from "@/types/Component.types";
 import { RecipeCardType } from "@/types/Redux.types";
+import { StarIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -18,6 +19,7 @@ import {
   Tab,
   TabPanel,
   TabPanels,
+  IconButton,
 } from "@chakra-ui/react";
 import { FaYoutube } from "react-icons/fa";
 
@@ -28,6 +30,8 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
   recipe,
   isOpen,
   onClose,
+  isSaved,
+  handleSaveClick
 }) => {
   //parses the instructions into line breaks
   function formatInstructions(instructions: string) {
@@ -69,7 +73,12 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
       <ModalContent
         height={{
           'base': 'auto',
-          'sm': '100%'
+          'sm': '115%'
+        }}
+        position="relative"
+        bottom={{
+          'base': '0',
+          'sm': '3.5rem'
         }}
         overflow="hidden"
         maxW={{ base: "87.5%", md: "80%" }}
@@ -81,8 +90,25 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
           fontSize={35}
           display="flex"
           flexDirection="column"
+          alignItems="center"
         >
           {recipe.strMeal}
+            <Box
+            position="relative"
+            width="100%"
+            display="flex"
+            flexDirection="row"
+            justifyContent="center"
+            >
+              <IconButton
+                size="md"
+                colorScheme="teal"
+                backgroundColor={"transparent"}
+                aria-label={isSaved ? "Remove from saved" : "Save recipe"}
+                icon={<StarIcon color={isSaved ? "teal" : "gray.400"} />}
+                onClick={(event) => handleSaveClick(event)}
+              />
+            </Box>
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody

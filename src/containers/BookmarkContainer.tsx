@@ -2,11 +2,33 @@ import RecipeCard from "@/components/RecipeCards";
 import { Wrap, WrapItem } from "@chakra-ui/react";
 import { RecipeCardType } from "@/types/Redux.types";
 import { BookmarkContainerProps } from "@/types/Component.types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function BookmarkContainer({savedCards}: BookmarkContainerProps) {
   const [showSavedAlert, toggleSavedAlert] = useState<boolean>(false);
   const [showDeleteAlert, toggleDeleteAlert] = useState<boolean>(false);
+
+  // UseEffect to handle alerts
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  
+    if (showSavedAlert) {
+      timeoutId = setTimeout(() => {
+        toggleSavedAlert(false);
+      }, 3000);
+    } else if (showDeleteAlert) {
+      timeoutId = setTimeout(() => {
+        toggleDeleteAlert(false);
+      }, 3000);
+    }
+  
+    // Clean up
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [showSavedAlert, showDeleteAlert]);
 
   return (
     <Wrap

@@ -161,6 +161,8 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, toggleSavedAlert, toggl
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           recipe={recipe}
+          handleSaveClick={handleSaveClick}
+          isSaved={isSaved}
         />
       </React.Suspense>)}
     </Box>

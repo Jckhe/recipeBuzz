@@ -17,7 +17,7 @@ import { IndexContainerProps } from "@/types/Component.types";
 import SearchBar from "@/components/SearchBar";
 import { RecipeCardType } from "@/types/Redux.types";
 
-const IndexContainer = ({searchTerm, onInputChange, isLoading, error}: IndexContainerProps) => {
+const IndexContainer = ({searchTerm, onInputChange}: IndexContainerProps) => {
   const recipeCards = useSelector(selectSearchedCards);
   const [showSavedAlert, toggleSavedAlert] = useState<boolean>(false);
   const [showDeleteAlert, toggleDeleteAlert] = useState<boolean>(false);
