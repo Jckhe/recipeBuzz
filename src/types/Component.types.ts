@@ -10,6 +10,8 @@ export interface RecipeModalProps {
   recipe: RecipeCardType;
   isOpen: boolean;
   onClose: () => void;
+  handleSaveClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  isSaved: boolean;
 }
 
 export interface SuspenseModalProps {
@@ -25,8 +27,6 @@ export interface SearchBarProps {
 export interface IndexContainerProps {
   searchTerm: string;
   onInputChange:  (event: React.ChangeEvent<HTMLInputElement>) => void;
-  isLoading: boolean;
-  error: any;
 }
 
 export interface BookmarkContainerProps {

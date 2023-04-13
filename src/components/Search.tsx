@@ -74,7 +74,7 @@ export default function Search() {
       <Heading fontFamily="EBGaramond08-Regular">
         Explore, Search, and Save.
       </Heading>
-      <IndexContainer isLoading={isFetching} error={error} searchTerm={searchTerm} onInputChange={onInputChange} />
+      <IndexContainer searchTerm={searchTerm} onInputChange={onInputChange} />
     </Box>
   );
 }
